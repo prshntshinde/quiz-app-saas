@@ -1,44 +1,48 @@
-name: npm run build
+name: Check NextJs build
 
 on:
+  # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
 
+  # Runs on any open or reopened pull request
   pull_request:
     types: [opened, reopened]
 
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
+  # Build job
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Detech Package Manager
+      - name: Detect package manager
         id: detect-package-manager
         run: |
           if [ -f "${{ github.workspace }}/yarn.lock" ]; then
-              echo "manager=yarn" >> $GITHUB_OUTPUT
-              echo "command=install" >> $GITHUB_OUTPUT
-              echo "runner=yarn" >> $GITHUB_OUTPUT
-              exit 0
-              elif [ -f "${{ github.workspace }}/package.json" ]; then
-              echo "manager=npm" >> $GITHUB_OUTPUT
-              echo "command=ci" >> $GITHUB_OUTPUT
-              echo "runner=npx --no-install" >> $GITHUB_OUTPUT
-              exit 0
-              else
-              echo "Unable to determine package manager" >&2
-              exit 1
+            echo "manager=yarn" >> $GITHUB_OUTPUT
+            echo "command=install" >> $GITHUB_OUTPUT
+            echo "runner=yarn" >> $GITHUB_OUTPUT
+            exit 0
+          elif [ -f "${{ github.workspace }}/package.json" ]; then
+            echo "manager=npm" >> $GITHUB_OUTPUT
+            echo "command=ci" >> $GITHUB_OUTPUT
+            echo "runner=npx --no-install" >> $GITHUB_OUTPUT
+            exit 0
+          else
+            echo "Unable to determine package manager" >&2
+            exit 1
           fi
       - name: Setup Node
-      uses: actions/setup-node@v3
-      with:
-        node-version: "18"
-        cache: ${{ steps.detect-package-manager.outputs.manager }}
-      - name: Restore Cache
-      uses: actions/cache@v3
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+          cache: ${{ steps.detect-package-manager.outputs.manager }}
+      - name: Restore cache
+        uses: actions/cache@v3
         with:
           path: |
             .next/cache
