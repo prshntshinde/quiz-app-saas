@@ -1,15 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { WeightIcon } from "lucide-react";
 import React from "react";
 
-type Props = {};
-
-const page = (props: Props) => {
+export default function Home() {
   return (
-    <div>
-      <Button variant={"secondary"}>Click Me</Button>
+    <div className="flex h-screen max-h-screen">
+      <Button variant={"outline"} className="text-3xl mt-3">
+        Click Me
+      </Button>
     </div>
   );
-};
-
-export default page;
+}
