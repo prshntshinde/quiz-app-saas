@@ -7,6 +7,8 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import banner1 from "../../public/banner-1.png";
 
 export default function Home() {
   const currentPath = usePathname();
@@ -90,6 +92,11 @@ export default function Home() {
           </Link>
         </div>
       </header>
+      <main className="flex">
+        <div className="flex-col max-w-full mx-auto">
+          <Image src={banner1} alt="Quiz App" width={600} height={400}></Image>
+        </div>
+      </main>
     </div>
   );
 }
