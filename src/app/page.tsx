@@ -1,14 +1,19 @@
 "use client";
 
 import React from "react";
-import { School, Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import banner1 from "../../public/banner-1.png";
+import { Button } from "@nextui-org/button";
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  NavbarMenuToggle,
+  NavbarMenu,
+  NavbarMenuItem,
+} from "@nextui-org/navbar";
+import { ThemeSwitcher } from "@/components/ui/ThemeSwitcher";
 
 export default function Home() {
   const currentPath = usePathname();
@@ -18,85 +23,86 @@ export default function Home() {
     { label: "Quiz", href: "/quiz" },
   ];
 
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const menuItems = [
+    "Profile",
+    "Dashboard",
+    "Activity",
+    "Analytics",
+    "System",
+    "Deployments",
+    "My Settings",
+    "Team Settings",
+    "Help & Feedback",
+    "Log Out",
+  ];
+
   return (
     <div className="flex max-h-screen w-full flex-col">
-      <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
-        <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
-          <Link
-            href="/"
-            className="flex items-center gap-2 text-lg font-bold md:text-base"
-          >
-            <School className="h-6 w-6"></School>
-          </Link>
-          {links.map(({ label, href }) => (
-            <Link
-              key={label}
-              href={href}
-              className={cn(
-                "hover:bg-sky-100 hover:text-blue-600 transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 hover:duration-300 font-bold",
-                { "text-blue-600": href === currentPath }
-              )}
-            >
-              {label}
-            </Link>
-          ))}
-        </nav>
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button
-              variant="outline"
-              size="icon"
-              className="shrink-0 md:hidden"
-            >
-              <Menu className="h-5 w-5" />
-              <span className="sr-only">Toggle navigation menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left">
-            <nav className="grid gap-6 text-lg font-medium">
-              <Link
-                href="#"
-                className="flex items-center gap-2 text-lg font-semibold"
-              >
-                <School className="h-6 w-6" />
-                <span className="sr-only">Quiz App</span>
-              </Link>
-              {links.map(({ label, href }) => (
-                <Link
-                  key={label}
-                  href={href}
-                  className={cn(
-                    "hover:bg-sky-100 hover:text-blue-600 transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 hover:duration-300 font-bold",
-                    { "text-blue-600": href === currentPath }
-                  )}
-                >
-                  {label}
-                </Link>
-              ))}
-              <Link
-                href="/admin"
-                className="hover:bg-sky-100 hover:text-blue-600 transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 hover:duration-300 font-bold"
-              >
-                {"Admin"}
-              </Link>
-            </nav>
-          </SheetContent>
-        </Sheet>
+      <div></div>
 
-        <div className="invisible flex flex-row-reverse w-full items-center md:visible">
-          <Link
-            href="/admin"
-            className="hover:bg-sky-100 hover:text-blue-600 transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 hover:duration-300 font-bold"
-          >
-            {"Admin"}
-          </Link>
-        </div>
-      </header>
-      <main className="flex">
-        <div className="flex-col max-w-full mx-auto">
-          <Image src={banner1} alt="Quiz App" width={600} height={400}></Image>
-        </div>
-      </main>
+      <Navbar onMenuOpenChange={setIsMenuOpen}>
+        <NavbarContent>
+          <NavbarMenuToggle
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            className="sm:hidden"
+          />
+          <NavbarBrand>
+            <p className="font-bold text-inherit">QUIZ</p>
+          </NavbarBrand>
+        </NavbarContent>
+
+        <NavbarContent className="hidden sm:flex gap-4" justify="center">
+          <NavbarItem>
+            <Link color="foreground" href="#">
+              Features
+            </Link>
+          </NavbarItem>
+          <NavbarItem isActive>
+            <Link href="#" aria-current="page">
+              Customers
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link color="foreground" href="#">
+              Integrations
+            </Link>
+          </NavbarItem>
+        </NavbarContent>
+        <NavbarContent justify="end">
+          <NavbarItem className="hidden lg:flex">
+            <Link href="#">Login</Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Button as={Link} color="primary" href="#" variant="flat">
+              Sign Up
+            </Button>
+          </NavbarItem>
+          <NavbarItem>
+            <ThemeSwitcher />
+          </NavbarItem>
+        </NavbarContent>
+        <NavbarMenu>
+          {menuItems.map((item, index) => (
+            <NavbarMenuItem key={`${item}-${index}`}>
+              <Link
+                color={
+                  index === 2
+                    ? "primary"
+                    : index === menuItems.length - 1
+                      ? "danger"
+                      : "foreground"
+                }
+                className="w-full"
+                href="#"
+                size="lg"
+              >
+                {item}
+              </Link>
+            </NavbarMenuItem>
+          ))}
+        </NavbarMenu>
+      </Navbar>
     </div>
   );
 }
