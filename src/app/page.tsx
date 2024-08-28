@@ -16,13 +16,6 @@ import {
 import { ThemeSwitcher } from "@/components/ui/ThemeSwitcher";
 
 export default function Home() {
-  const currentPath = usePathname();
-
-  const links = [
-    { label: "Home", href: "/" },
-    { label: "Quiz", href: "/quiz" },
-  ];
-
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const menuItems = [
     "Profile",
