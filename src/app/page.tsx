@@ -95,7 +95,6 @@ export default function Home() {
                 }
                 className="w-full"
                 href="#"
-                size="lg"
               >
                 {item}
               </Link>
