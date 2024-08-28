@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Image from "next/image";
-import { School, Menu } from "lucide-react";
 import { Providers } from "./providers";
 
 import { cn } from "@/lib/utils";
