@@ -1,33 +1,33 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { Button } from "@nextui-org/button";
 import {
   Navbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
+  NavbarMenuToggle,
 } from "@nextui-org/navbar";
-import { ThemeSwitcher } from "@/components/ui/ThemeSwitcher";
+import { IconBook } from "@tabler/icons-react";
+
+import Link from "next/link";
+import React from "react";
+
+import { ThemeSwitcher } from "@/components/ui/theme-switcher";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
-    "Log Out",
+    {
+      label: "Home",
+      href: "/",
+    },
+    {
+      label: "Quiz",
+      href: "/quiz",
+    },
   ];
 
   return (
@@ -41,26 +41,19 @@ export default function Home() {
             className="sm:hidden"
           />
           <NavbarBrand>
-            <p className="font-bold text-inherit">QUIZ</p>
+            <IconBook size={28} />
+            <p className="p-2 font-bold text-inherit">QUIZ</p>
           </NavbarBrand>
         </NavbarContent>
 
         <NavbarContent className="hidden sm:flex gap-4" justify="center">
-          <NavbarItem>
-            <Link color="foreground" href="#">
-              Features
-            </Link>
-          </NavbarItem>
-          <NavbarItem isActive>
-            <Link href="#" aria-current="page">
-              Customers
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link color="foreground" href="#">
-              Integrations
-            </Link>
-          </NavbarItem>
+          {menuItems.map((item, index) => (
+            <NavbarItem key={`${item}-${index}`}>
+              <Link className="w-full" href={item.href}>
+                {item.label}
+              </Link>
+            </NavbarItem>
+          ))}
         </NavbarContent>
         <NavbarContent justify="end">
           <NavbarItem className="hidden lg:flex">
@@ -87,9 +80,9 @@ export default function Home() {
                       : "foreground"
                 }
                 className="w-full"
-                href="#"
+                href="{item.href}"
               >
-                {item}
+                {item.label}
               </Link>
             </NavbarMenuItem>
           ))}
