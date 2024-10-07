@@ -1,0 +1,16 @@
+{
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "always",
+        "source.organizeImports": "always"
+    },
+    "files.associations": {
+        "*.css": "tailwindcss"
+    },
+
+    "sonarlint.connectedMode.project": {
+        "connectionId": "prshntshinde",
+        "projectKey": "prshntshinde_quiz-app-saas"
+    },
+    "typescript.tsdk": "node_modules\\typescript\\lib"
+}

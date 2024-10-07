@@ -1,9 +1,10 @@
 "use client";
 
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
-import { SunMoon } from "lucide-react";
 import { Button } from "@nextui-org/react";
+import { IconMoon, IconSun } from "@tabler/icons-react";
+import { useTheme } from "next-themes";
+
+import { useEffect, useState } from "react";
 
 export function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
@@ -17,7 +18,8 @@ export function ThemeSwitcher() {
         aria-label="Toggle theme"
         onClick={() => setTheme(theme === "light" ? "dark" : "light")}
       >
-        <SunMoon />
+        {/* <SunMoon /> */}
+        {theme === "light" ? <IconSun /> : <IconMoon />}
       </Button>
     </div>
   );
