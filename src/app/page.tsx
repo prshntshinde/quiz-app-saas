@@ -46,7 +46,7 @@ export default function Home() {
           </NavbarBrand>
         </NavbarContent>
 
-        <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        <NavbarContent className="hidden gap-4 sm:flex" justify="center">
           {menuItems.map((item, index) => (
             <NavbarItem key={`${item}-${index}`}>
               <Link className="w-full" href={item.href}>

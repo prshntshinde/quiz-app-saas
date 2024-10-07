@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import "./globals.css";
-import { Providers } from "./providers";
 
 import { cn } from "@/lib/utils";
+
+import "./globals.css";
+import { Providers } from "./providers";
 
 const fontPoppins = Poppins({
   subsets: ["latin"],
@@ -31,7 +32,7 @@ export default function RootLayout({
       </head>
       <body
         className={cn(
-          "max-w-[1920px] mx-auto font-poppins",
+          "font-poppins mx-auto max-w-[1920px]",
           fontPoppins.variable
         )}
       >
