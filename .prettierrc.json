@@ -18,5 +18,10 @@
   "trailingComma": "es5",
   "useTabs": false,
   "embeddedLanguageFormatting": "auto",
-  "vueIndentScriptAndStyle": false
+  "vueIndentScriptAndStyle": false,
+
+  "importOrder": ["^(react|next?/?([a-zA-Z/]*))$","^@core/(.*)$", "^@server/(.*)$", "^@ui/(.*)$", "^@/hooks/(.*)$", "^@/components/(.*)$","^@/utils/(.*)$", "^@/(.*)$", "^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"]
 }
