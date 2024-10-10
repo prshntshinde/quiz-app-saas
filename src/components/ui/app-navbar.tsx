@@ -17,23 +17,22 @@ import React from "react";
 
 import { ThemeSwitcher } from "@/components/ui/theme-switcher";
 
+const menuItems = [
+  {
+    label: "Home",
+    href: "/",
+  },
+  {
+    label: "Quiz",
+    href: "/quiz",
+  },
+];
+
 export default function AppNavbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const menuItems = [
-    {
-      label: "Home",
-      href: "/",
-    },
-    {
-      label: "Quiz",
-      href: "/quiz",
-    },
-  ];
 
   return (
     <div className="flex max-h-screen w-full flex-col">
-      <div></div>
-
       <Navbar onMenuOpenChange={setIsMenuOpen}>
         <NavbarContent>
           <NavbarMenuToggle
@@ -69,9 +68,9 @@ export default function AppNavbar() {
           </NavbarItem>
         </NavbarContent>
         <NavbarMenu>
-          {menuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link className="w-full" href="{item.href}">
+          {menuItems.map((item) => (
+            <NavbarMenuItem key={item.href}>
+              <Link className="w-full" href={item.href}>
                 {item.label}
               </Link>
             </NavbarMenuItem>
