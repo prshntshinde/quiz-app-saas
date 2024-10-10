@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 
+import AppNavbar from "@/components/ui/app-navbar";
+
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
@@ -31,13 +33,13 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={cn(
-          "font-poppins mx-auto max-w-[1920px]",
-          fontPoppins.variable
-        )}
+        className={cn("font-poppins h-screen w-screen", fontPoppins.variable)}
       >
         <Providers>
-          <main className="flex-grow-1">{children}</main>
+          <AppNavbar />
+          <main className="bg-[right_bottom_50vh)] flex-grow bg-[url(/light-bg.svg)] bg-cover bg-repeat dark:bg-[url(/dark-bg.svg)]">
+            {children}
+          </main>
         </Providers>
       </body>
     </html>
