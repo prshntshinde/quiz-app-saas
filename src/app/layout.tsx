@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 
-import AppNavbar from "@/components/ui/app-navbar";
+import AppNavbar from "@/components/ui/app-navbar/app-navbar";
 
 import { cn } from "@/lib/utils";
 
