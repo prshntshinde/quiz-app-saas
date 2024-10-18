@@ -19,28 +19,29 @@ import { ThemeSwitcher } from "@/components/ui/app-navbar/theme-switcher";
 
 import AuthButton from "./auth-button";
 
-const menuItems = [
-  {
-    label: "Home",
-    href: "/",
-  },
-  {
-    label: "Quiz",
-    href: "/quiz",
-  },
-];
-
 export default function AppNavbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const { status } = useSession();
+  const menuItems = React.useMemo(() => {
+    const items = [
+      {
+        label: "Home",
+        href: "/",
+      },
+      {
+        label: "Quiz",
+        href: "/quiz",
+      },
+    ];
 
-  // TODO: fix the rerending of the menu items
-  if (status === "authenticated") {
-    menuItems.push({
-      label: "Profile",
-      href: "/profile",
-    });
-  }
+    if (status === "authenticated") {
+      items.push({
+        label: "Profile",
+        href: "/profile",
+      });
+    }
+    return items;
+  }, [status]);
 
   return (
     <div className="flex max-h-screen w-full flex-col">
