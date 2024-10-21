@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@nextui-org/button";
 import {
   Navbar,
   NavbarBrand,
@@ -11,25 +10,38 @@ import {
   NavbarMenuToggle,
 } from "@nextui-org/navbar";
 import { IconBook } from "@tabler/icons-react";
+import { useSession } from "next-auth/react";
 
 import Link from "next/link";
 import React from "react";
 
-import { ThemeSwitcher } from "@/components/ui/theme-switcher";
+import { ThemeSwitcher } from "@/components/ui/app-navbar/theme-switcher";
 
-const menuItems = [
-  {
-    label: "Home",
-    href: "/",
-  },
-  {
-    label: "Quiz",
-    href: "/quiz",
-  },
-];
+import AuthButton from "./auth-button";
 
 export default function AppNavbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const { status } = useSession();
+  const menuItems = React.useMemo(() => {
+    const items = [
+      {
+        label: "Home",
+        href: "/",
+      },
+      {
+        label: "Quiz",
+        href: "/quiz",
+      },
+    ];
+
+    if (status === "authenticated") {
+      items.push({
+        label: "Profile",
+        href: "/profile",
+      });
+    }
+    return items;
+  }, [status]);
 
   return (
     <div className="flex max-h-screen w-full flex-col">
@@ -39,7 +51,7 @@ export default function AppNavbar() {
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             className="sm:hidden"
           />
-          <NavbarBrand>
+          <NavbarBrand aria-label="Quiz App">
             <IconBook size={28} />
             <p className="p-2 font-bold text-inherit">QUIZ</p>
           </NavbarBrand>
@@ -55,13 +67,8 @@ export default function AppNavbar() {
           ))}
         </NavbarContent>
         <NavbarContent justify="end">
-          <NavbarItem className="hidden lg:flex">
-            <Link href="#">Login</Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Button as={Link} color="primary" href="#" variant="flat">
-              Sign Up
-            </Button>
+          <NavbarItem className="hidden sm:flex">
+            <AuthButton minimal={false} />
           </NavbarItem>
           <NavbarItem>
             <ThemeSwitcher />
@@ -75,6 +82,9 @@ export default function AppNavbar() {
               </Link>
             </NavbarMenuItem>
           ))}
+          <NavbarMenuItem>
+            <AuthButton />
+          </NavbarMenuItem>
         </NavbarMenu>
       </Navbar>
     </div>
