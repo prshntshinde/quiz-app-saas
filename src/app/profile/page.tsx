@@ -22,6 +22,15 @@ export default async function Profile() {
     );
   } catch (error) {
     console.error("Failed to fetch user profile: ", error);
-    return <div>Failed to fetch user profile.</div>;
+    return (
+      <Card className="text-center text-red-500">
+        <CardBody>
+          <p>Unable to load your profile at this time.</p>
+          <p>
+            Please try again later or contact support if the issue persists.
+          </p>
+        </CardBody>
+      </Card>
+    );
   }
 }
