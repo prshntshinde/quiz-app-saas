@@ -18,7 +18,6 @@ export function ThemeSwitcher() {
         aria-label="Toggle theme"
         onClick={() => setTheme(theme === "light" ? "dark" : "light")}
       >
-        {/* <SunMoon /> */}
         {theme === "light" ? <IconSun /> : <IconMoon />}
       </Button>
     </div>

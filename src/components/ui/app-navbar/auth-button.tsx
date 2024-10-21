@@ -41,6 +41,7 @@ export default function AuthButton({
             className="transition-transform"
             showFallback={!session?.user?.image}
             src={session?.user?.image ?? ""}
+            aria-label="User menu"
           />
         </DropdownTrigger>
         <DropdownMenu aria-label="Profile Actions" variant="flat">

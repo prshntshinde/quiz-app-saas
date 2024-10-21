@@ -51,7 +51,7 @@ export default function AppNavbar() {
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             className="sm:hidden"
           />
-          <NavbarBrand>
+          <NavbarBrand aria-label="Quiz App">
             <IconBook size={28} />
             <p className="p-2 font-bold text-inherit">QUIZ</p>
           </NavbarBrand>
