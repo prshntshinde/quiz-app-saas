@@ -8,7 +8,7 @@ import {
   NavbarItem,
   NavbarMenu,
   NavbarMenuItem,
-  NavbarMenuToggle,
+  NavbarMenuToggle
 } from "@nextui-org/navbar";
 import { IconBook } from "@tabler/icons-react";
 
