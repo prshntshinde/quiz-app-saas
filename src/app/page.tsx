@@ -17,9 +17,14 @@ import React from "react";
 
 import { ThemeSwitcher } from "@/components/ui/theme-switcher";
 
+type MenuItem = {
+  label: string;
+  href: string;
+};
+
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const menuItems = [
+  const menuItems: MenuItem[] = [
     {
       label: "Home",
       href: "/",
@@ -30,37 +35,38 @@ export default function Home() {
     },
   ];
 
+  function renderMenuItems(items: MenuItem[]) {
+    return items.map((item) => (
+      <NavbarItem key={item.label}>
+        <Link className="w-full" href={item.href}>
+          {item.label}
+        </Link>
+      </NavbarItem>
+    ));
+  }
+
   return (
     <div className="flex max-h-screen w-full flex-col">
-      <div></div>
-
       <Navbar onMenuOpenChange={setIsMenuOpen}>
         <NavbarContent>
           <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             className="sm:hidden"
           />
-          <NavbarBrand>
+          <NavbarBrand aria-label="Quiz Home">
             <IconBook size={28} />
             <p className="p-2 font-bold text-inherit">QUIZ</p>
           </NavbarBrand>
         </NavbarContent>
-
         <NavbarContent className="hidden gap-4 sm:flex" justify="center">
-          {menuItems.map((item, index) => (
-            <NavbarItem key={`${item}-${index}`}>
-              <Link className="w-full" href={item.href}>
-                {item.label}
-              </Link>
-            </NavbarItem>
-          ))}
+          {renderMenuItems(menuItems)}
         </NavbarContent>
         <NavbarContent justify="end">
           <NavbarItem className="hidden lg:flex">
-            <Link href="#">Login</Link>
+            <Link href="/login">Login</Link>
           </NavbarItem>
           <NavbarItem>
-            <Button as={Link} color="primary" href="#" variant="flat">
+            <Button as={Link} color="primary" href="/signup" variant="flat">
               Sign Up
             </Button>
           </NavbarItem>
@@ -69,8 +75,8 @@ export default function Home() {
           </NavbarItem>
         </NavbarContent>
         <NavbarMenu>
-          {menuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
+          {menuItems.map((item) => (
+            <NavbarMenuItem key={item.label}>
               <Link className="w-full" href={item.href}>
                 {item.label}
               </Link>
