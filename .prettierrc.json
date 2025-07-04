@@ -24,8 +24,4 @@
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
   "plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"]
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 7156ad876c7f3e318d3430425ee31487feaa71a4
