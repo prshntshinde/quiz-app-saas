@@ -20,7 +20,7 @@
   "embeddedLanguageFormatting": "auto",
   "vueIndentScriptAndStyle": false,
 
-  "importOrder": ["^(react|next?/?([a-zA-Z/]*))$","^@core/(.*)$", "^@server/(.*)$", "^@ui/(.*)$", "^@/hooks/(.*)$", "^@/components/(.*)$","^@/utils/(.*)$", "^@/(.*)$", "^[./]"],
+  "importOrder": ["^(react|next?/?([a-zA-Z/]*))$","^@core/(.*)$", "^@server/(.*)$", "^@ui/(.*)$", "^@/components/(.*)$", "^@/hooks/(.*)$", "^@/utils/(.*)$", "^@/(.*)$", "^[./]"],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
   "plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"]
