@@ -7,6 +7,7 @@
     "files.associations": {
         "*.css": "tailwindcss"
     },
+
     "sonarlint.connectedMode.project": {
         "connectionId": "prshntshinde",
         "projectKey": "prshntshinde_quiz-app-saas"
